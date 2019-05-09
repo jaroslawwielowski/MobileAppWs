@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users") // http://localhost:8080/users
+@RequestMapping("/users") //  
 public class UserController {
 	
 	@GetMapping
-	public String getUsers(@RequestParam(value="page") int page, 
-			@RequestParam(value="limit") int limit) {
-		return "get user was called with pahe " + page + " and limit " + limit;
+	public String getUsers(@RequestParam(value="page", defaultValue = "1") int page, 
+			@RequestParam(value="limit", defaultValue = "50") int limit,
+			@RequestParam(value="sort",defaultValue = "DSCR", required = false) String sort) {
+		return "get user was called with pahe " + page + " and limit " + limit + " and sort " + sort;
 	}
 	
 	@GetMapping(path="/{userId}")
