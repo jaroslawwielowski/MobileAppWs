@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.wsui.model.response;
+package com.appsdeveloperblog.app.ws.ui.model.response;
 
 public class UserRest {
 
