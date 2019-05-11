@@ -1,9 +1,11 @@
 package com.appsdeveloperblog.app.ws.ui.controller;
 
-import static org.mockito.Mockito.never;
+
+//import static org.mockito.Mockito.never;
 
 import org.hibernate.validator.cfg.context.ReturnValueConstraintMappingContext;
-import org.junit.Test;
+import org.springframework.http.MediaType;
+//import org.junit.Test;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +28,11 @@ public class UserController {
 		return "get user was called with pahe " + page + " and limit " + limit + " and sort " + sort;
 	}
 
-	@GetMapping(path = "/{userId}")
+	@GetMapping(path = "/{userId}", 
+			produces = 
+		{ MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE
+	})
 	public UserRest getUser(@PathVariable String userId) {
 		UserRest returnValue = new UserRest();
 		returnValue.setEmail("test@Test.com");
