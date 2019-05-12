@@ -4,7 +4,9 @@ package com.appsdeveloperblog.app.ws.ui.controller;
 //import static org.mockito.Mockito.never;
 
 import org.hibernate.validator.cfg.context.ReturnValueConstraintMappingContext;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 //import org.junit.Test;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +35,12 @@ public class UserController {
 		{ MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_VALUE
 	})
-	public UserRest getUser(@PathVariable String userId) {
+	public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
 		UserRest returnValue = new UserRest();
 		returnValue.setEmail("test@Test.com");
 		returnValue.setFirstName("Jarosław");
 		returnValue.setLastName("Wielowski");
-		return returnValue;
+		return new ResponseEntity<UserRest>(HttpStatus.OK);
 	}
 
 	@PostMapping
