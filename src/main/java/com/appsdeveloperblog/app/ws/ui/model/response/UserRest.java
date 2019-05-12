@@ -1,13 +1,14 @@
 package com.appsdeveloperblog.app.ws.ui.model.response;
 
+import org.apache.logging.log4j.util.string;
+
 public class UserRest {
 
 	private String userId;
 	private String firstName;
 	private String lastName;
 	private String email;
-
-	public String getUserId() {
+	public String  getUserId() {
 		return userId;
 	}
 
@@ -39,4 +40,7 @@ public class UserRest {
 		this.email = email;
 	}
 
+	
+	
+	
 }

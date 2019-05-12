@@ -40,7 +40,8 @@ public class UserController {
 		returnValue.setEmail("test@Test.com");
 		returnValue.setFirstName("Jarosław");
 		returnValue.setLastName("Wielowski");
-		return new ResponseEntity<UserRest>(HttpStatus.OK);
+		
+		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
 	}
 
 	@PostMapping
