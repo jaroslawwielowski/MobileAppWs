@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.appsdeveloperblog.app.ws.ui.model.request.UserDetailsRequestModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
 
 @RestController
@@ -36,13 +38,23 @@ public class UserController {
 		returnValue.setFirstName("Jarosław");
 		returnValue.setLastName("Wielowski");
 
-		return new ResponseEntity<UserRest>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
 	}
 
-	@PostMapping
-	public String createUser() {
+	@PostMapping(consumes = { 
+			MediaType.APPLICATION_XML_VALUE, 
+			MediaType.APPLICATION_JSON_VALUE },
+			produces = {
+			MediaType.APPLICATION_XML_VALUE, 
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<UserRest> createUser(@RequestBody UserDetailsRequestModel userDetail) {
 
-		return "creaye user was called";
+		UserRest returnValue = new UserRest();
+		returnValue.setEmail(userDetail.getEmail());
+		returnValue.setFirstName(userDetail.getFirstName());
+		returnValue.setLastName(userDetail.getLastName());
+
+		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
 
 	}
 
