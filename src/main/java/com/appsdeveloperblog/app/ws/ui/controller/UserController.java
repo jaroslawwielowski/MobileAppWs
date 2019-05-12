@@ -1,6 +1,5 @@
 package com.appsdeveloperblog.app.ws.ui.controller;
 
-
 //import static org.mockito.Mockito.never;
 
 import org.hibernate.validator.cfg.context.ReturnValueConstraintMappingContext;
@@ -30,23 +29,19 @@ public class UserController {
 		return "get user was called with pahe " + page + " and limit " + limit + " and sort " + sort;
 	}
 
-	@GetMapping(path = "/{userId}", 
-			produces = 
-		{ MediaType.APPLICATION_XML_VALUE,
-			MediaType.APPLICATION_JSON_VALUE
-	})
+	@GetMapping(path = "/{userId}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
 		UserRest returnValue = new UserRest();
 		returnValue.setEmail("test@Test.com");
 		returnValue.setFirstName("Jarosław");
 		returnValue.setLastName("Wielowski");
-		
-		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
+
+		return new ResponseEntity<UserRest>(HttpStatus.BAD_REQUEST);
 	}
 
 	@PostMapping
 	public String createUser() {
-	
+
 		return "creaye user was called";
 
 	}
