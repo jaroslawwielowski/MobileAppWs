@@ -1,5 +1,7 @@
 package com.appsdeveloperblog.app.ws.ui.controller;
 
+import javax.validation.Valid;
+
 //import static org.mockito.Mockito.never;
 
 import org.hibernate.validator.cfg.context.ReturnValueConstraintMappingContext;
@@ -47,7 +49,7 @@ public class UserController {
 			produces = {
 			MediaType.APPLICATION_XML_VALUE, 
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<UserRest> createUser(@RequestBody UserDetailsRequestModel userDetail) {
+	public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestModel userDetail) {
 
 		UserRest returnValue = new UserRest();
 		returnValue.setEmail(userDetail.getEmail());
