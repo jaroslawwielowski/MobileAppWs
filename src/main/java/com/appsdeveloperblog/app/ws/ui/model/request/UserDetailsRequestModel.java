@@ -1,10 +1,16 @@
 package com.appsdeveloperblog.app.ws.ui.model.request;
 
+import javax.validation.constraints.NotNull;
+
 public class UserDetailsRequestModel {
 
+	@NotNull(message="firstname cannot be null")
 	private String firstName;
+	@NotNull(message="lastname cannot be null")
 	private String lastName;
+	@NotNull(message="email cannot be null")
 	private String email;
+	@NotNull(message="password name cannot be null")
 	private String password;
 
 	public String getFirstName() {
