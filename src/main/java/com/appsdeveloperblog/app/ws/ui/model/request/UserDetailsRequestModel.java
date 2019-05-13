@@ -1,6 +1,7 @@
 package com.appsdeveloperblog.app.ws.ui.model.request;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class UserDetailsRequestModel {
 
@@ -11,6 +12,7 @@ public class UserDetailsRequestModel {
 	@NotNull(message="email cannot be null")
 	private String email;
 	@NotNull(message="password name cannot be null")
+	@Size(min=8, max=30, message="password must be betwen 8 and 30 characters")
 	private String password;
 
 	public String getFirstName() {
