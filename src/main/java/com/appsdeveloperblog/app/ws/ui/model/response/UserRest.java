@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.app.ws.ui.model.response;
 
-import org.apache.logging.log4j.util.string;
+//import org.apache.logging.log4j.util.string;
 
 public class UserRest {
 

@@ -59,7 +59,7 @@ public class UserController {
 			produces = {
 			MediaType.APPLICATION_XML_VALUE, 
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestMode userDetail) {
+	public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestModel userDetail) {
 
 		UserRest returnValue = new UserRest();
 		returnValue.setEmail(userDetail.getEmail());
