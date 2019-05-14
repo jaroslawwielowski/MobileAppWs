@@ -1,5 +1,9 @@
 package com.appsdeveloperblog.app.ws.ui.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import javax.validation.Valid;
 
 //import static org.mockito.Mockito.never;
@@ -25,6 +29,8 @@ import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
 @RestController
 @RequestMapping("/users") //
 public class UserController {
+	
+	Map<String, UserRest> users;
 
 	@GetMapping
 	public String getUsers(@RequestParam(value = "page", defaultValue = "1") int page,
@@ -49,13 +55,18 @@ public class UserController {
 			produces = {
 			MediaType.APPLICATION_XML_VALUE, 
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestModel userDetail) {
+	public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestMode userDetail) {
 
 		UserRest returnValue = new UserRest();
 		returnValue.setEmail(userDetail.getEmail());
 		returnValue.setFirstName(userDetail.getFirstName());
 		returnValue.setLastName(userDetail.getLastName());
-
+		
+		String userId = UUID.randomUUID().toString();
+		if (users == null) users = new HashMap<>();
+		users.put(userId, returnValue);
+		returnValue.setUserId(userId);
+		
 		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
 
 	}
