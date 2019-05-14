@@ -32,6 +32,7 @@ public class UserController {
 	
 	Map<String, UserRest> users;
 
+	//first get method
 	@GetMapping
 	public String getUsers(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "limit", defaultValue = "50") int limit,
@@ -39,6 +40,7 @@ public class UserController {
 		return "get user was called with pahe " + page + " and limit " + limit + " and sort " + sort;
 	}
 
+	//get method
 	@GetMapping(path = "/{userId}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
 
@@ -53,6 +55,7 @@ public class UserController {
 
 	}
 
+	//post method
 	@PostMapping(consumes = { 
 			MediaType.APPLICATION_XML_VALUE, 
 			MediaType.APPLICATION_JSON_VALUE },
@@ -75,12 +78,15 @@ public class UserController {
 
 	}
 
+	//put method
 	@PutMapping
 	public String updateUser() {
 		return "update user by called";
 
 	}
 
+	
+	//delete method
 	@DeleteMapping
 	public String deleteUser() {
 		return "delete user by called";
