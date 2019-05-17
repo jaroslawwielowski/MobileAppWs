@@ -69,10 +69,11 @@ public class UserController {
 		returnValue.setFirstName(userDetail.getFirstName());
 		returnValue.setLastName(userDetail.getLastName());
 		
-		String userId = UUID.randomUUID().toString();
+		String userId = UUID.randomUUID().toString(); 
+		returnValue.setUserId(userId);
+
 		if (users == null) users = new HashMap<>();
 		users.put(userId, returnValue);
-		returnValue.setUserId(userId);
 		
 		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
 
