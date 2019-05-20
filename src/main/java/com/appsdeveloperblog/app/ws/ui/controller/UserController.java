@@ -55,7 +55,7 @@ public class UserController {
 
 	}
 
-	//post method
+	//post method"
 	@PostMapping(consumes = { 
 			MediaType.APPLICATION_XML_VALUE, 
 			MediaType.APPLICATION_JSON_VALUE },
@@ -70,9 +70,9 @@ public class UserController {
 		returnValue.setLastName(userDetail.getLastName());
 		
 		String userId = UUID.randomUUID().toString(); 
-		returnValue.setUserId(userId);
 
 		if (users == null) users = new HashMap<>();
+		returnValue.setUserId(userId);
 		users.put(userId, returnValue);
 		
 		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
