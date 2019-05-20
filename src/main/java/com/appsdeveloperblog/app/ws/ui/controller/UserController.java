@@ -86,7 +86,7 @@ public class UserController {
 			produces = {
 			MediaType.APPLICATION_XML_VALUE, 
 			MediaType.APPLICATION_JSON_VALUE })
-	public String updateUser(@PathVariable String userId, @Valid @RequestBody UserDetailsRequestModel userDetail) {
+	public String updateUser(@PathVariable String userId, @Valid @RequestBody UpdateUserDetailsRequestModel userDetail) {
 		return "update user by called";
 
 	}
