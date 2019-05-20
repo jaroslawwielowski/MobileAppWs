@@ -56,7 +56,7 @@ public class UserController {
 	}
 
 	//post method"
-	@PostMapping(consumes = { 
+	@PostMapping(path = "/{userId}", consumes = { 
 			MediaType.APPLICATION_XML_VALUE, 
 			MediaType.APPLICATION_JSON_VALUE },
 			produces = {
@@ -80,8 +80,13 @@ public class UserController {
 	}
 
 	//put method
-	@PutMapping
-	public String updateUser() {
+	@PutMapping(consumes = { 
+			MediaType.APPLICATION_XML_VALUE, 
+			MediaType.APPLICATION_JSON_VALUE },
+			produces = {
+			MediaType.APPLICATION_XML_VALUE, 
+			MediaType.APPLICATION_JSON_VALUE })
+	public String updateUser(@PathVariable String userId, @Valid @RequestBody UserDetailsRequestModel userDetail) {
 		return "update user by called";
 
 	}
