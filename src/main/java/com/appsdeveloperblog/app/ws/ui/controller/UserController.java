@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.sound.midi.Patch;
 import javax.validation.Valid;
 
 //import static org.mockito.Mockito.never;
@@ -30,10 +31,10 @@ import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
 @RestController
 @RequestMapping("/users") //
 public class UserController {
-	
+
 	Map<String, UserRest> users;
 
-	//first get method
+	// first get method
 	@GetMapping
 	public String getUsers(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "limit", defaultValue = "50") int limit,
@@ -41,69 +42,69 @@ public class UserController {
 		return "get user was called with pahe " + page + " and limit " + limit + " and sort " + sort;
 	}
 
-	//get method
+	// get method
 	@GetMapping(path = "/{userId}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
 
-		
 		if (users.containsKey(userId)) {
 			return new ResponseEntity<>(users.get(userId), HttpStatus.OK);
 
-		}else {
-			return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 		}
 
 	}
 
-	//post method"
-	@PostMapping( consumes = { 
-			MediaType.APPLICATION_XML_VALUE, 
-			MediaType.APPLICATION_JSON_VALUE },
-			produces = {
-			MediaType.APPLICATION_XML_VALUE, 
-			MediaType.APPLICATION_JSON_VALUE })
+	// post method"
+	@PostMapping(consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestModel userDetail) {
 
 		UserRest returnValue = new UserRest();
 		returnValue.setEmail(userDetail.getEmail());
 		returnValue.setFirstName(userDetail.getFirstName());
 		returnValue.setLastName(userDetail.getLastName());
-		
-		String userId = UUID.randomUUID().toString(); 
 
-		if (users == null) users = new HashMap<>();
+		String userId = UUID.randomUUID().toString();
+
+		if (users == null)
+			users = new HashMap<>();
 		returnValue.setUserId(userId);
 		users.put(userId, returnValue);
-		
+
 		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
 
 	}
 
-	//put method
+	// put method
 	@PutMapping(path = "/{userId}", 
 			consumes = { 
-			MediaType.APPLICATION_XML_VALUE, 
-			MediaType.APPLICATION_JSON_VALUE },
-			produces = {
-			MediaType.APPLICATION_XML_VALUE, 
-			MediaType.APPLICATION_JSON_VALUE })
-	public UserRest updateUser(@PathVariable String userId, @Valid @RequestBody UpdateUserDetailsRequestModel userDetail) {
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_VALUE 
+			}, 
+			produces = { 
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_VALUE
+			})
+	public UserRest updateUser(@PathVariable String userId,
+			@Valid @RequestBody UpdateUserDetailsRequestModel userDetail) {
 
 		UserRest storeUserDetail = users.get(userId);
 		storeUserDetail.setFirstName(userDetail.getFirstName());
 		storeUserDetail.setLastName(userDetail.getLastName());
-		
+
 		users.put(userId, storeUserDetail);
-		
+
 		return storeUserDetail;
 	}
 
-	
-	//delete method
-	@DeleteMapping
-	public String deleteUser() {
-		return "delete user by called";
+	// delete method
+	@DeleteMapping(path = "/{id}")
+	public ResponseEntity<Void> deleteUser(@PathVariable String id) {
+		users.remove(id);
+		return ResponseEntity.noContent().build();
+		
 	}
 
 }
