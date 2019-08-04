@@ -23,9 +23,9 @@ public class AppExceptionHandler  extends ResponseEntityExceptionHandler{
 		
 		if(errorMessageDescription == null) errorMessageDescription = ex.toString();
 		
-		ErrorMessage errorMessage = new ErrorMessage(new Date(), ex.getLocalizedMessage());
+		ErrorMessage errorMessage = new ErrorMessage(new Date(), errorMessageDescription);
 		
-		return new ResponseEntity<>(ex, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }
