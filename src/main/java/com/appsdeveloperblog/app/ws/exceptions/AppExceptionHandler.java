@@ -12,8 +12,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class AppExceptionHandler  extends ResponseEntityExceptionHandler{
 	
 	@ExceptionHandler(value = {Exception.class})
-	public ResponseEntity<Object> handleAnyException( Exception exception, WebRequest request){
-		return new ResponseEntity<>(exception, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<Object> handleAnyException( Exception ex, WebRequest request){
+		return new ResponseEntity<>(ex, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }
