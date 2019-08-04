@@ -47,7 +47,7 @@ public class UserController {
 	@GetMapping(path = "/{userId}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
 
-//		if(true) throw new UserServiceExeption("A user service exeption is thrown");
+		if(true) throw new UserServiceExeption("A user service exeption is thrown");
 		
 		if (users.containsKey(userId)) {
 			return new ResponseEntity<>(users.get(userId), HttpStatus.OK);
